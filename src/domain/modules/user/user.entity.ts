@@ -1,25 +1,30 @@
-import crypto from 'crypto'
-import { TodoProps } from "../todo/todo.entity"
-
-export type UserProps = {  
+export interface Task {  
   name: string
-  username: string
-  tasks?: TodoProps[]
+  description: string
+  status?: boolean
 }
 
-export class User {
-  public readonly id: string
-  public props: Required<UserProps>
-  constructor(props: UserProps, id?: string) {
-    this.id = id || crypto.randomUUID()
+
+export interface User {  
+  name: string
+  username: string
+  email: string
+  password: string
+  tasks?: Task[]
+}
+
+export class UserEntity {
+  public props: Required<User>
+
+  constructor(props: User) {
     this.props = {
       ...props,
       tasks: []
     }
   }
 
-  updateTasks(tasks: TodoProps[]){
-    this.props.tasks = tasks
+  static create(User: User) {
+    return new UserEntity(User)
   }
 
 }

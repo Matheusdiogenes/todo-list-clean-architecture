@@ -1,6 +1,8 @@
-import { User } from "./user.entity";
+import { TodoEntity } from "../todo/todo.entity";
+import { UserEntity } from "./user.entity";
 
 export interface IUserRepository {
-  insert(user: User): Promise<User>
-  findAll(): Promise<User[]>
+  insert(user: UserEntity): Promise<UserEntity>
+  updateTask(Todo: TodoEntity): Promise<TodoEntity>
+  findAll(): Promise<UserEntity[]>
 }
