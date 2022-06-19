@@ -1,5 +1,6 @@
-import { UserPayload } from "../type";
+import { TaskPayload, UserPayload } from "../type";
 
 export interface ICreateUser {
-  create(user: UserPayload): Promise<UserPayload>
+  save(user: UserPayload): Promise<UserPayload>
+  addTask(task: TaskPayload): Promise<TaskPayload>
 }
