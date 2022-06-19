@@ -1,11 +1,12 @@
-import { TaskPayload, UserPayload } from "./type"
+import { TodoPayload } from "../todo/type"
+import { UserPayload } from "./type"
 
 export class UserEntity {
   name: string
   username: string
   email: string
   password: string
-  tasks?: TaskPayload[]
+  tasks?: TodoPayload[]
 
   private constructor(payload: UserPayload) {
     this.name = payload.name

@@ -1,13 +1,9 @@
-export type TaskPayload = {
-  name: string
-  description: string
-  status?: boolean
-}
+import { TodoPayload } from "../../todo/type"
 
 export type UserPayload = {
   name: string
   username: string
   email: string
   password: string
-  tasks?: TaskPayload[]
+  tasks?: TodoPayload[]
 }
