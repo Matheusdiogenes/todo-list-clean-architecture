@@ -14,16 +14,4 @@ export class TodoEntity {
   static create(userData: TodoEntity): TodoEntity {
     return new TodoEntity(userData)
   }
-
-  static validator(userData: TodoEntity) {
-    if (userData.name.length === 0) {
-      return new Error('name invalid')
-    }
-
-    if (userData.description.length === 0) {
-      return new Error('description invalid')
-    }
-    return 0
-  }
-
 }
