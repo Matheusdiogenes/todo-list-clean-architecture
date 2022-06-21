@@ -1,17 +1,15 @@
+import crypto from 'crypto'
+
 export class TodoEntity {
-  id?: string
+  readonly id?: string
   name: string
   description: string
   status?: boolean
   
-
-  private constructor(payload: TodoEntity) {
+  constructor(payload: TodoEntity, id?: string) {
+    this.id = id || crypto.randomUUID()
     this.name = payload.name
     this.description = payload.description
     this.status = false
-  }
-
-  static create(userData: TodoEntity): TodoEntity {
-    return new TodoEntity(userData)
   }
 }

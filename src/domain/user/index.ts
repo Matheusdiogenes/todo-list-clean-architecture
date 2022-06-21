@@ -1,2 +1,3 @@
 export * from './UserEntity'
-export * from './IUserUseCase'
+export * from './IUserRepository'
+export * from './UserPayload'
