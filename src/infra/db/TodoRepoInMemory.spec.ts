@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto'
-import { TodoEntity, TodoPayload } from "../../domain/todo"
-import { TodoRepoInMemory } from "./TodoRepoInMemory"
+import { TodoEntity, TodoPayloadInput } from '../../domain/todo/'
+import { TodoRepoInMemory } from "../../infra/db/"
 
 describe('UserRepoInMemory Test', () => {
 
@@ -8,7 +8,7 @@ describe('UserRepoInMemory Test', () => {
     const userRepoInMemory = new TodoRepoInMemory()
     const idUser = randomUUID()
 
-    const todoData: TodoPayload = {
+    const todoData: TodoPayloadInput = {
       idUser,
       name: "task 1",
       description: 'description task 1'

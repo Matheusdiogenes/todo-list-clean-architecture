@@ -1,4 +1,5 @@
 import crypto from 'crypto'
+import { TodoPayloadInput } from '../todo/TodoPayload'
 
 export class TodoEntity {
   readonly id?: string
@@ -6,10 +7,10 @@ export class TodoEntity {
   name: string
   description: string
   status?: boolean
-  
-  constructor(payload: TodoEntity, idUser: string, id?: string, ) {
+
+  constructor(payload: TodoPayloadInput, id?: string,) {
     this.id = id || crypto.randomUUID()
-    this.idUser = idUser
+    this.idUser = payload.idUser
     this.name = payload.name
     this.description = payload.description
     this.status = false

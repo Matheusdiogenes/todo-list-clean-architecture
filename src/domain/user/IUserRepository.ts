@@ -1,6 +1,6 @@
-import { CreateUserInput, CreateUserOutput, UpdateUserInput } from "."
+import { CreateUserInput, UpdateUserInput, UserEntity } from '../user'
 
 export interface IUserRepository {
-  create(userCreate: CreateUserInput): Promise<CreateUserOutput>
+  create(userCreate: CreateUserInput): Promise<UserEntity>
   update(userUpdate: UpdateUserInput): Promise<void>
 }

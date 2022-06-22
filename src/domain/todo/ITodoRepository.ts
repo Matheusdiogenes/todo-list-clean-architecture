@@ -1,6 +1,6 @@
-import { TodoPayload, TodoPayloadOutput } from '.'
+import { TodoPayloadInput, TodoEntity  } from '../todo'
 
 export interface ITodoRepository {
-  save(todoPayload: TodoPayload): Promise<void>
-  findAll(): Promise<TodoPayloadOutput[]>
+  save(TodoPayloadInput: TodoPayloadInput): Promise<TodoEntity>
+  findAll(): Promise<TodoEntity[]>
 }

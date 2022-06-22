@@ -1,4 +1,4 @@
-import { CreateUserInput, UpdateUserInput, UserEntity } from "../user"
+import { CreateUserInput, UpdateUserInput, UserEntity } from '../../domain/user/'
 
 describe('User', () => {
   describe('Create', () => {

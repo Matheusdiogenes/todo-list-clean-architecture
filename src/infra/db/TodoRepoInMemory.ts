@@ -1,4 +1,4 @@
-import { ITodoRepository, TodoEntity } from "../../domain/todo"
+import { ITodoRepository, TodoEntity, TodoPayloadInput } from '../../domain/todo'
 
 export class TodoRepoInMemory implements ITodoRepository{
   
@@ -8,8 +8,10 @@ export class TodoRepoInMemory implements ITodoRepository{
     this.todos = todoslist || []
   }
 
-  async save(user: TodoEntity): Promise<void> {
-    this.todos.push(user)  
+  async save(todoData: TodoPayloadInput): Promise<TodoEntity> {
+    const todo = new TodoEntity(todoData)
+    this.todos.push(todoData)  
+    return todo
   }
 
   async findAll(): Promise<TodoEntity[]> {

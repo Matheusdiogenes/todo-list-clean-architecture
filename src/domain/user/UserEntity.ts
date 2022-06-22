@@ -1,6 +1,6 @@
 import crypto from 'crypto'
 import { TodoPayloadOutput } from '../todo'
-import { CreateUserInput, UpdateUserInput } from "../user"
+import { CreateUserInput, UpdateUserInput } from '../user'
 
 export class UserEntity {
   readonly id: string

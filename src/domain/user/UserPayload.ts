@@ -14,7 +14,7 @@ export type UpdateUserInput = {
   password?: string
 }
 
-export type CreateUserOutput = CreateUserInput | {
+export type CreateUserOutput = CreateUserInput & {
   id: string
   todos: TodoPayloadOutput[]
 }

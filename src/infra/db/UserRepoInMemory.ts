@@ -1,9 +1,10 @@
-import { CreateUserInput, CreateUserOutput, IUserRepository, UpdateUserInput } from "../../domain/user";
+import { CreateUserInput, IUserRepository, UpdateUserInput, UserEntity } from "../../domain/user";
 
 export class UserRepoInMemory implements IUserRepository{
-  users: CreateUserOutput[] = []
+  users: UserEntity[] = []
 
-  async create(user: CreateUserInput): Promise<CreateUserOutput> {
+  async create(userData: CreateUserInput): Promise<UserEntity> {
+    const user = new UserEntity(userData)
     this.users.push(user)  
     return user
   }
