@@ -1,4 +1,4 @@
-import { UserPayload } from "../domain/user"
+import { CreateUserInput } from "../domain/user"
 import { UserRepoInMemory } from "../infra/db"
 import { CreateUserUseCase } from "./CreateUserUseCase"
 
@@ -7,7 +7,7 @@ describe('CreateUserUseCase Test', () => {
   it('should insert a new user', async () => {
     const repository = new UserRepoInMemory()
     const createUserUseCase = new CreateUserUseCase(repository)
-    const userData: UserPayload = {
+    const userData: CreateUserInput = {
       name: 'diogenes',
       username: 'matheus',
       email: 'ma@email.com',

@@ -1,10 +1,10 @@
-import { UserPayload, UserEntity } from "../user"
+import { CreateUserInput, UserEntity } from "../user"
 
 describe('User', () => {
   describe('Create', () => {
 
     it('Should create a user with empty to-do list', () => {
-      const userData: UserPayload = {
+      const userData: CreateUserInput = {
         name: 'diogenes',
         username: 'matheus',
         email: 'ma@email.com',

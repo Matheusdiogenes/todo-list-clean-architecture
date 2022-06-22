@@ -1,11 +1,11 @@
-import { UserEntity, UserPayload } from "../../domain/user";
+import { UserEntity, CreateUserInput } from "../../domain/user";
 import { UserRepoInMemory } from "./UserRepoInMemory";
 
 describe('UserRepoInMemory Test', () => {
 
   it('should insert a new user', async () => {
     const userRepoInMemory = new UserRepoInMemory()
-    const userData: UserPayload = {
+    const userData: CreateUserInput = {
       email: 'any_email',
       username: 'any username',
       name: "any name",

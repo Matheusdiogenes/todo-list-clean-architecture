@@ -1,5 +1,5 @@
-import { UserPayload } from "."
+import { CreateUserInput } from "."
 
 export interface IUserRepository {
-  create(user: UserPayload): Promise<void>
+  create(user: CreateUserInput): Promise<void>
 }

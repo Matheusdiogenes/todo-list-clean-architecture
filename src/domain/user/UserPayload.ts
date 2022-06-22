@@ -4,10 +4,9 @@ export type TodoPayload = {
   status?: boolean
 }
 
-export type UserPayload = {
+export type CreateUserInput = {
   name: string
   username: string
   email: string
   password: string
-  todos?: TodoPayload[]
 }
