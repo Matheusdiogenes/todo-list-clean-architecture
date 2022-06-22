@@ -1,5 +1,6 @@
-import { CreateUserInput } from "."
+import { CreateUserInput, CreateUserOutput, UpdateUserInput } from "."
 
 export interface IUserRepository {
-  create(user: CreateUserInput): Promise<void>
+  create(userCreate: CreateUserInput): Promise<CreateUserOutput>
+  update(userUpdate: UpdateUserInput): Promise<void>
 }

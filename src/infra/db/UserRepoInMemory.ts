@@ -1,9 +1,14 @@
-import { IUserRepository, UserEntity } from "../../domain/user";
+import { CreateUserInput, CreateUserOutput, IUserRepository, UpdateUserInput } from "../../domain/user";
 
 export class UserRepoInMemory implements IUserRepository{
-  users: UserEntity[] = []
+  users: CreateUserOutput[] = []
 
-  async create(user: UserEntity): Promise<void> {
+  async create(user: CreateUserInput): Promise<CreateUserOutput> {
     this.users.push(user)  
+    return user
+  }
+
+  async update(userUpdate: UpdateUserInput): Promise<void> {
+    throw new Error('Not implemented')
   }
 }

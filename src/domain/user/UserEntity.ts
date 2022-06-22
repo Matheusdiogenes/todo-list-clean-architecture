@@ -1,6 +1,6 @@
 import crypto from 'crypto'
-import { TodoEntity } from '../todo'
-import { CreateUserInput } from "../user"
+import { TodoPayloadOutput } from '../todo'
+import { CreateUserInput, UpdateUserInput } from "../user"
 
 export class UserEntity {
   readonly id: string
@@ -8,7 +8,7 @@ export class UserEntity {
   username: string
   email: string
   password: string
-  todos?: TodoEntity[]
+  todos?: TodoPayloadOutput[]
 
   constructor(payload: CreateUserInput, id?: string) {
     this.id = id || crypto.randomUUID()
@@ -19,7 +19,11 @@ export class UserEntity {
     this.todos = []
   }
 
-  updateUser() {
-
+  updateUser(updateData: UpdateUserInput) {
+    this.name = updateData.name || this.name
+    this.username = updateData.username || this.username
+    this.email = updateData.email || this.email
+    this.password = updateData.password || this.password
   }
+
 }

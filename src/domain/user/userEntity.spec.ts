@@ -1,22 +1,36 @@
-import { CreateUserInput, UserEntity } from "../user"
+import { CreateUserInput, UpdateUserInput, UserEntity } from "../user"
 
 describe('User', () => {
   describe('Create', () => {
 
+    const createData: CreateUserInput = {
+      name: 'diogenes',
+      username: 'matheus',
+      email: 'ma@email.com',
+      password: '123456',
+    }
+    const user = new UserEntity(createData)
     it('Should create a user with empty to-do list', () => {
-      const userData: CreateUserInput = {
-        name: 'diogenes',
-        username: 'matheus',
-        email: 'ma@email.com',
-        password: '123456',
+      expect(user.id).toBeDefined();
+      expect(user.name).toEqual(createData.name)
+      expect(user.username).toEqual(createData.username)
+      expect(user.email).toEqual(createData.email)
+      expect(user.password).toEqual(createData.password)
+      expect(user.todos).toHaveLength(0)
+    })
+
+    it('Should update a user', () => {
+      const updateData: UpdateUserInput = {
+        name: 'Jõao',
+        password: '123'
       }
-      const user = new UserEntity(userData)
+      user.updateUser(updateData)
 
       expect(user.id).toBeDefined();
-      expect(user.name).toEqual(userData.name)
-      expect(user.username).toEqual(userData.username)
-      expect(user.email).toEqual(userData.email)
-      expect(user.password).toEqual(userData.password)
+      expect(user.name).toEqual(updateData.name)
+      expect(user.username).toEqual(createData.username)
+      expect(user.email).toEqual(createData.email)
+      expect(user.password).toEqual(updateData.password)
       expect(user.todos).toHaveLength(0)
     })
 
