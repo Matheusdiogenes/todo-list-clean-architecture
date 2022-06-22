@@ -1,6 +1,5 @@
 export type TodoPayload = {
-  id?: string
+  idUser: string
   name: string
-  description: string
-  status?: boolean
+  description: string  
 }

@@ -1,6 +1,6 @@
 import { TodoEntity, TodoPayload } from '.'
 
-export interface ITodoUseCase {
+export interface ITodoRepository {
   save(todoPayload: TodoPayload): Promise<void>
   findAll(): Promise<TodoEntity[]>
 }
