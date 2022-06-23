@@ -18,19 +18,5 @@ describe('User', () => {
       expect(user.password).toEqual(createData.password)
     })
 
-    it('Should update a user', () => {
-      const updateData: UpdateUserInput = {
-        name: 'Jõao',
-        password: '123'
-      }
-      user.updateUser(updateData)
-
-      expect(user.id).toBeDefined();
-      expect(user.name).toEqual(updateData.name)
-      expect(user.username).toEqual(createData.username)
-      expect(user.email).toEqual(createData.email)
-      expect(user.password).toEqual(updateData.password)  
-    })
-
   })
 })
