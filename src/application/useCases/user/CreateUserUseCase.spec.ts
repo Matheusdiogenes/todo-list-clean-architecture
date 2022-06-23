@@ -20,6 +20,5 @@ describe('CreateUserUseCase Test', () => {
     expect(expected.username).toEqual(userData.username)
     expect(expected.email).toEqual(userData.email)
     expect(expected.password).toEqual(userData.password)
-    expect(expected.todos).toHaveLength(0)
   })
 })
