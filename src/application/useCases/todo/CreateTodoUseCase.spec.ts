@@ -23,7 +23,7 @@ describe('CreateTodoUseCase Test', () => {
       description: 'task 1 description'
     }
 
-    const expected = await createTodoUseCase.exec(todoData, user.id)
+    const expected = await createTodoUseCase.exec(todoData)
 
     expect(expected.id).toBeDefined()
     expect(expected.idUser).toBeDefined()

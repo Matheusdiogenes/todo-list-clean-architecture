@@ -18,6 +18,6 @@ npm start (building...)
 
 [ x ] Update User
 
-[ ] Update todo status
+[ x ] Update todo status
 
 [ ] Delete todo 
