@@ -16,7 +16,6 @@ describe('User', () => {
       expect(user.username).toEqual(createData.username)
       expect(user.email).toEqual(createData.email)
       expect(user.password).toEqual(createData.password)
-      expect(user.todos).toHaveLength(0)
     })
 
     it('Should update a user', () => {
@@ -30,10 +29,8 @@ describe('User', () => {
       expect(user.name).toEqual(updateData.name)
       expect(user.username).toEqual(createData.username)
       expect(user.email).toEqual(createData.email)
-      expect(user.password).toEqual(updateData.password)
-      expect(user.todos).toHaveLength(0)
+      expect(user.password).toEqual(updateData.password)  
     })
 
   })
-
 })

@@ -1,5 +1,3 @@
-import { TodoPayloadOutput } from "../todo"
-
 export type CreateUserInput = {
   name: string
   username: string
@@ -15,6 +13,5 @@ export type UpdateUserInput = {
 }
 
 export type CreateUserOutput = CreateUserInput & {
-  id: string
-  todos: TodoPayloadOutput[]
+  id: string 
 }
