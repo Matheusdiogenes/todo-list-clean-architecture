@@ -16,7 +16,7 @@ npm start (building...)
 
 [ x ] Create Todo
 
-[ ] Update User
+[ x ] Update User
 
 [ ] Update todo status
 
