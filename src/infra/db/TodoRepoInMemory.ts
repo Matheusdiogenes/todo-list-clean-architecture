@@ -48,4 +48,8 @@ export class TodoRepoInMemory implements ITodoRepository {
     return todoEntity
   }
 
+  async delete(id: string): Promise<void> {
+    this.todos = this.todos.filter(t => t.id !== id)
+  }
+
 }
