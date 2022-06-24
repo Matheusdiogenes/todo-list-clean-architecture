@@ -20,4 +20,4 @@ npm start (building...)
 
 [ x ] Update todo status
 
-[ ] Delete todo 
+[ x ] Delete todo 
