@@ -1,6 +1,6 @@
 import crypto from 'crypto'
 import { CreateUserInput } from '../user'
-
+// teste
 export class UserEntity {
   readonly id: string
   name: string
