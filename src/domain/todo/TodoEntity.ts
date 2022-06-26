@@ -13,7 +13,7 @@ export class TodoEntity {
     this.idUser = payload.idUser
     this.name = payload.name
     this.description = payload.description
-    this.status = false
+    this.status = payload.status || false
   }
 
   static create(payload: TodoInput, id?: string) {

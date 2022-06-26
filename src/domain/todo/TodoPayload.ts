@@ -2,6 +2,7 @@ export type TodoInput = {
   idUser: string
   name: string
   description: string  
+  status?: boolean
 }
 
 export type TodoOutput = TodoInput & {  
