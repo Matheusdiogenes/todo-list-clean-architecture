@@ -5,4 +5,5 @@ export interface IUserRepository {
   save(id: string, userUpdate: UpdateUserInput): Promise<void | CreateUserOutput>
   update(userUpdate: UpdateUserInput): Promise<void>
   findOne(id: string): Promise<CreateUserOutput | undefined>
+  findAll(): Promise<CreateUserOutput[]>
 }

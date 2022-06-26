@@ -1,5 +1,4 @@
-export type CreateUserInput = {
-  id?: string
+export type CreateUserInput = {  
   name: string
   username: string
   email: string
