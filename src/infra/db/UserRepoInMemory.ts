@@ -18,10 +18,16 @@ export class UserRepoInMemory implements IUserRepository {
   }
 
   async findOne(id: string): Promise<CreateUserOutput | undefined> {
-    const user = this.users.find(u => u.id === id)
+    const user = this.users.find(u => u.id === id)    
+    
     if (!user) {
       return undefined
     }
+    return user
+  }
+
+  async findAll(): Promise<CreateUserOutput[]> {
+    const user = this.users    
     return user
   }
 
