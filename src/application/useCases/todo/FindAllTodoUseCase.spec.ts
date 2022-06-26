@@ -2,9 +2,9 @@ import { randomUUID } from 'crypto'
 import { TodoRepoInMemory } from '../../../infra/db'
 import { TodoEntity, TodoInput } from '../../../domain/todo/'
 
-describe('DeleteTodoUseCase Test',  () => {  
+describe('FindAllTodoUseCase Test',  () => {  
 
-  it('should delete todo', async () => {
+  it('should find all todo', async () => {
     const todoData: TodoInput = {      
       idUser: randomUUID(),
       name: 'task 2',
@@ -14,9 +14,9 @@ describe('DeleteTodoUseCase Test',  () => {
     const todoEntity = TodoEntity.create(todoData)
     const todoRepoInMemory = new TodoRepoInMemory([todoEntity])
     
-    await todoRepoInMemory.delete(todoEntity.idUser, todoEntity.id)    
+    const todos = await todoRepoInMemory.findAll(todoEntity.idUser)    
     
-    expect(todoRepoInMemory.todos).toHaveLength(0);
+    expect(todos).toHaveLength(1);
 
   })
   
