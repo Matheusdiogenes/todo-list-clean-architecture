@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto'
-import { CreateUserInput, UserEntity } from "../user"
+import { UserInput, UserEntity } from "../user"
 import { TodoEntity } from './TodoEntity'
 import { TodoInput } from './TodoPayload'
 
@@ -7,7 +7,7 @@ describe('Todo', () => {
   
   describe('Create', () => {
     const idUser = randomUUID()
-    const userData: CreateUserInput = {
+    const userData: UserInput = {
       name: 'diogenes',
       username: 'matheus',
       email: 'ma@email.com',

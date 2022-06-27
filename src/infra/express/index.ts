@@ -1,11 +1,11 @@
 import express, { Request, Response } from 'express'
-import { FindOneUserUseCase } from '../../application/useCases/user/FindOneUserUseCase'
-import { CreateUserUseCase } from '../../application/useCases/user/CreateUserUseCase'
+import { CreateUserUseCase, FindOneUserUseCase, FindAllUserUseCase } from '../../application/useCases/user'
 import { UserRepoInMemory } from '../db'
 
 const repository = new UserRepoInMemory()
 const createUserUseCase = new CreateUserUseCase(repository)
 const findOneUserUseCase = new FindOneUserUseCase(repository)
+const findAllUserUseCase = new FindAllUserUseCase(repository)
 
 const app = express()
 app.use(express.json())
@@ -24,11 +24,19 @@ app.post('/user', async (req: Request, res: Response) => {
     password: req.body.password,
   }
   const user = await createUserUseCase.exec(userData)
-  res.json({user})
+  res.json({ user })
+})
+
+app.get('/user/:id', async (req: Request, res: Response) => { 
+  
+  const user = await findOneUserUseCase.exec(req.params.id)
+  res.json({
+    user
+  })
 })
 
 app.get('/user', async (req: Request, res: Response) => {
-  const user = await findOneUserUseCase.exec(req.body.id)
+  const user = await findAllUserUseCase.exec()
   res.json({
     user
   })

@@ -1,11 +1,10 @@
 import { IUserRepository } from "../../../domain/user";
 
-export class FindOneUserUseCase {
+export class FindAllUserUseCase {
   constructor(private userRepo: IUserRepository) { }
 
-  async exec(id: string) {
-    const user = await this.userRepo.findOne(id)    
-    
+  async exec() {
+    const user = await this.userRepo.findAll()
     return user
   }
 }

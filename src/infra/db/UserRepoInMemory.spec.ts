@@ -1,13 +1,13 @@
-import { CreateUserInput, UpdateUserInput } from "../../domain/user";
+import { UserInput, UserOutput } from "../../domain/user";
 import { UserRepoInMemory } from "./UserRepoInMemory";
-import { randomUUID } from 'crypto'
+import { randomUUID } from "crypto";
 
 describe('UserRepoInMemory Test', () => {
 
   it('should insert a new user', async () => {
 
     const userRepoInMemory = new UserRepoInMemory()
-    const userData: CreateUserInput = {
+    const userData: UserInput = {
       email: 'any_email',
       username: 'any username',
       name: "any name",
@@ -24,7 +24,7 @@ describe('UserRepoInMemory Test', () => {
 
   it('should find a user', async () => {
     const userRepoInMemory = new UserRepoInMemory()
-    const userData: CreateUserInput = {
+    const userData: UserInput = {
       email: 'any_email',
       username: 'any username',
       name: "any name",
@@ -39,32 +39,31 @@ describe('UserRepoInMemory Test', () => {
     expect(findUser!.username).toEqual(userData.username)
     expect(findUser!.email).toEqual(userData.email)
     expect(findUser!.password).toEqual(userData.password)
-
   })
 
-  it('should update a user', async () => {
-    const userFake = {
-      id: randomUUID(),
-      email: 'any_email',
-      username: 'any username',
-      name: "any name",
-      password: 'secret'
-    }
-    const userRepoInMemory = new UserRepoInMemory([userFake])
-    const updateData: UpdateUserInput = {
-      email: 'new_email',
-      username: 'new username',
-      name: "new name",
-      password: 'secretkey'
-    }
+  it('should find all user', async () => {
+    // Mock
+    const userData: UserOutput[] = [
+      {
+        id: randomUUID(),
+        email: 'any_email',
+        username: 'any username',
+        name: "any name",
+        password: 'secret'
+      },
+      {
+        id: randomUUID(),
+        email: 'any_email',
+        username: 'any username',
+        name: "any name",
+        password: 'secret'
+      }
+    ]
     
-    const userUpdated = await userRepoInMemory.save(userFake.id, updateData)
+    const userRepoInMemory = new UserRepoInMemory(userData)
+    const users = await userRepoInMemory.findAll() 
 
-    expect(userUpdated!.id).toBeDefined();
-    expect(userUpdated!.name).toEqual(updateData.name)
-    expect(userUpdated!.username).toEqual(updateData.username)
-    expect(userUpdated!.email).toEqual(updateData.email)
-    expect(userUpdated!.password).toEqual(updateData.password)
+    expect(users).toHaveLength(2);
   })
 
 })
