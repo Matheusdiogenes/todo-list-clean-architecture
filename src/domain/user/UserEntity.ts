@@ -1,5 +1,5 @@
-import crypto from 'crypto'
-import { CreateUserInput } from '../user'
+import { randomUUID } from 'crypto'
+import { UserInput, UserOutput } from '../user'
 
 export class UserEntity {
   readonly id: string
@@ -7,13 +7,23 @@ export class UserEntity {
   username: string
   email: string
   password: string
-  
-  constructor(payload: CreateUserInput, id?: string) {
-    this.id = id || crypto.randomUUID()
+
+  constructor(payload: UserInput, id?: string) {
+    this.id = id || randomUUID()
     this.name = payload.name
     this.email = payload.email
     this.username = payload.username
-    this.password = payload.password  
+    this.password = payload.password
+  }
+
+  toJSON(): UserOutput {
+    return {
+      id: this.id,
+      name: this.name,
+      email: this.email,
+      username: this.username,
+      password: this.password,
+    }
   }
 
 }

@@ -1,12 +1,17 @@
-export type TodoPayloadInput = {
-  id?: string
+export type TodoInput = {  
   idUser: string
   name: string
   description: string  
   status?: boolean
 }
 
-export type UpdateTodoPayload = {
+export type TodoOutput = TodoInput & {  
+  id: string
+  status: boolean
+}
+
+
+export type TodoUpdate = {
   name?: string
   description?: string  
   status?: boolean

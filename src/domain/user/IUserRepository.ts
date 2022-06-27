@@ -1,8 +1,8 @@
-import { CreateUserInput, CreateUserOutput, UpdateUserInput, UserEntity } from '../user'
+import { UserInput, UserOutput } from '../user'
 
 export interface IUserRepository {
-  create(userCreate: CreateUserInput): Promise<UserEntity>
-  save(id: string, userUpdate: UpdateUserInput): Promise<void | CreateUserOutput>
-  update(userUpdate: UpdateUserInput): Promise<void>
-  findOne(id: string): Promise<CreateUserOutput | undefined>
+  create(userCreate: UserInput, id?: string): Promise<UserOutput>
+  // update(id: string, userUpdate: UserUpdate): Promise<void | UserOutput>  
+  findOne(id: string): Promise<UserOutput | undefined>
+  findAll(): Promise<UserOutput[]>
 }

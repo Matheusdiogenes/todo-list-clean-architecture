@@ -1,18 +1,17 @@
-export type CreateUserInput = {
-  id?: string
+export type UserInput = {  
   name: string
   username: string
   email: string
   password: string
 }
 
-export type UpdateUserInput = {
+export type UserUpdate = {
   name?: string
   username?: string
   email?: string
   password?: string
 }
 
-export type CreateUserOutput = CreateUserInput & {
+export type UserOutput = UserInput & {
   id: string 
 }

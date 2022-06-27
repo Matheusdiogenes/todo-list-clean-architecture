@@ -1,55 +1,51 @@
-import { ITodoRepository, TodoEntity, TodoPayloadInput } from '../../domain/todo'
+import { ITodoRepository, TodoEntity, TodoInput, TodoOutput } from '../../domain/todo'
 
 export class TodoRepoInMemory implements ITodoRepository {
 
-  todos: TodoEntity[] = []
+  todos: TodoOutput[] = []
 
-  constructor(todoslist?: TodoEntity[]) {
+  constructor(todoslist?: TodoOutput[]) {
     this.todos = todoslist || []
   }
 
-  async save(todoData: TodoPayloadInput): Promise<TodoEntity> {
-    const todo = new TodoEntity(todoData)
+  async save(todoData: TodoInput): Promise<TodoOutput> {
+    const todo = new TodoEntity(todoData).toJSON()
     this.todos.push(todo)
     return todo
   }
 
-  async findAll(): Promise<TodoEntity[]> {
-    return this.todos
+  async findAll(idUser: string): Promise<TodoOutput[]> {
+    const todos = this.todos.filter(t => t.idUser === idUser)
+    return todos
   }
 
-  async findOne(id: string): Promise<TodoEntity> {
-    const todo = this.todos.find(t => t.id === id)
+  async findOne(idUser: string, id: string): Promise<TodoOutput> {
+    const todo = this.todos.find(t => t.id === id && t.idUser === idUser)
     if (!todo) {
       throw new Error('Todo not found.')
     }
     return todo
   }
 
-  async updateStatus(id: string, status: boolean): Promise<TodoEntity> {
-    const find = this.todos.find(t => t.id === id)
+  async update(idUser: string, id: string, status: boolean): Promise<TodoOutput> {
+    const find = this.todos.find(t => t.id === id && t.idUser === idUser)
 
     if (!find) {
       throw new Error('Todo not found.')
     }
-    const todo: TodoPayloadInput = {
-      id: find.id,
-      idUser: find.idUser,
-      name: find.name,
-      description: find.description,
-      status: find.status
-    }
-    const todoEntity = TodoEntity.create(todo)
-    todoEntity.updateStatus(status || !find.status)
+
+    const todoEntity = TodoEntity.create(find, find.id)
+
+    todoEntity.updateStatus(status)
 
     this.todos = this.todos.filter(t => t.id !== id)
-    this.todos.push(todoEntity)
+    this.todos.push(todoEntity.toJSON())
 
     return todoEntity
   }
 
-  async delete(id: string): Promise<void> {
-    this.todos = this.todos.filter(t => t.id !== id)
+  async delete(idUser: string, id: string): Promise<void> {
+    this.todos = this.todos.filter(t => t.id !== id && t.idUser === idUser)
   }
 
 }

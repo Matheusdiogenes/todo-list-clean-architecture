@@ -1,14 +1,13 @@
 import { randomUUID } from 'crypto'
-import { TodoEntity, TodoPayloadInput } from '../../domain/todo/'
+import { TodoEntity, TodoInput } from '../../domain/todo/'
 import { TodoRepoInMemory } from "../../infra/db/"
 
-describe('UserRepoInMemory Test', () => {
+describe('TodoRepoInMemory Test', () => {
 
   it('should insert a new todo', async () => {
-    const todoRepoInMemory = new TodoRepoInMemory()    
+    const todoRepoInMemory = new TodoRepoInMemory()
 
-    const todoData: TodoPayloadInput = {
-      id: randomUUID(),
+    const todoData: TodoInput = {
       idUser: randomUUID(),
       name: "task 1",
       description: 'description task 1'
@@ -26,19 +25,18 @@ describe('UserRepoInMemory Test', () => {
 
   it('should find a todo', async () => {
 
-    const todoData: TodoPayloadInput = {
+    const todoData: TodoInput = {
       idUser: randomUUID(),
-      id: randomUUID(),
       name: 'task 2',
       description: 'task 2 description'
     }
 
     const todoEntity = TodoEntity.create(todoData)
     const todoRepoInMemory = new TodoRepoInMemory([todoEntity])
-    
-    const todo = await todoRepoInMemory.findOne(todoEntity.id)    
-    
-    expect(todo.id).toEqual(todoData.id);
+
+    const todo = await todoRepoInMemory.findOne(todoEntity.idUser, todoEntity.id)
+
+    expect(todo.id).toEqual(todoEntity.id);
     expect(todo.idUser).toEqual(todoData.idUser);
     expect(todo.name).toEqual(todoData.name)
     expect(todo.description).toEqual(todoData.description)
@@ -47,19 +45,21 @@ describe('UserRepoInMemory Test', () => {
 
   it('should update todo status', async () => {
 
-    const todoData: TodoPayloadInput = {
-      id: randomUUID(),
-      idUser: randomUUID(),
+    const idUser = randomUUID()
+    const idTodo = randomUUID()
+
+    const todoData: TodoInput = {
+      idUser: idUser,
       name: 'task 2',
       description: 'task 2 description'
     }
 
-    const todoEntity = TodoEntity.create(todoData)
+    const todoEntity = TodoEntity.create(todoData, idTodo)
     const todoRepoInMemory = new TodoRepoInMemory([todoEntity])
-    
-    const todo = await todoRepoInMemory.updateStatus(todoData.id!, true)    
-    
-    expect(todo.id).toEqual(todoData.id);
+
+    const todo = await todoRepoInMemory.update(todoData.idUser, todoEntity.id, true)
+
+    expect(todo.id).toEqual(todoEntity.id);
     expect(todo.idUser).toEqual(todoData.idUser);
     expect(todo.name).toEqual(todoData.name)
     expect(todo.description).toEqual(todoData.description)
@@ -68,8 +68,7 @@ describe('UserRepoInMemory Test', () => {
 
   it('should delete todo', async () => {
 
-    const todoData: TodoPayloadInput = {
-      id: randomUUID(),
+    const todoData: TodoInput = {
       idUser: randomUUID(),
       name: 'task 2',
       description: 'task 2 description'
@@ -77,9 +76,9 @@ describe('UserRepoInMemory Test', () => {
 
     const todoEntity = TodoEntity.create(todoData)
     const todoRepoInMemory = new TodoRepoInMemory([todoEntity])
-    
-    await todoRepoInMemory.delete(todoData.id!)    
-    
+
+    await todoRepoInMemory.delete(todoData.idUser, todoEntity.id)
+
     expect(todoRepoInMemory.todos).toHaveLength(0);
   })
 
