@@ -34,7 +34,7 @@ describe('TodoRepoInMemory Test', () => {
     const todoEntity = TodoEntity.create(todoData)
     const todoRepoInMemory = new TodoRepoInMemory([todoEntity])
 
-    const todo = await todoRepoInMemory.findOne(todoEntity.idUser, todoEntity.id)
+    const todo = await todoRepoInMemory.findOne(todoEntity.id)
 
     expect(todo.id).toEqual(todoEntity.id);
     expect(todo.idUser).toEqual(todoData.idUser);
@@ -57,7 +57,7 @@ describe('TodoRepoInMemory Test', () => {
     const todoEntity = TodoEntity.create(todoData, idTodo)
     const todoRepoInMemory = new TodoRepoInMemory([todoEntity])
 
-    const todo = await todoRepoInMemory.update(todoData.idUser, todoEntity.id, true)
+    const todo = await todoRepoInMemory.update( todoEntity.id, true)
 
     expect(todo.id).toEqual(todoEntity.id);
     expect(todo.idUser).toEqual(todoData.idUser);
@@ -77,7 +77,7 @@ describe('TodoRepoInMemory Test', () => {
     const todoEntity = TodoEntity.create(todoData)
     const todoRepoInMemory = new TodoRepoInMemory([todoEntity])
 
-    await todoRepoInMemory.delete(todoData.idUser, todoEntity.id)
+    await todoRepoInMemory.delete(todoEntity.id)
 
     expect(todoRepoInMemory.todos).toHaveLength(0);
   })
