@@ -14,7 +14,7 @@ describe('DeleteTodoUseCase Test',  () => {
     const todoEntity = TodoEntity.create(todoData)
     const todoRepoInMemory = new TodoRepoInMemory([todoEntity])
     
-    await todoRepoInMemory.delete(todoEntity.idUser, todoEntity.id)    
+    await todoRepoInMemory.delete(todoEntity.id)    
     
     expect(todoRepoInMemory.todos).toHaveLength(0);
 

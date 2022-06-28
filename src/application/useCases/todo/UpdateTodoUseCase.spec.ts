@@ -20,7 +20,7 @@ describe('UpdateTodoUseCase Test', () => {
 
     const updateTodoUseCase = new UpdateTodoUseCase(repositoryTodo)
 
-    const expected = await updateTodoUseCase.exec(idUser, todoEntity.id, true)
+    const expected = await updateTodoUseCase.exec(todoEntity.id, true)
 
     expect(expected.id).toBeDefined()
     expect(expected.idUser).toBeDefined()

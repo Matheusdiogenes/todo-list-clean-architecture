@@ -8,8 +8,8 @@ export class TodoRepoInMemory implements ITodoRepository {
     this.todos = todoslist || []
   }
 
-  async save(todoData: TodoInput): Promise<TodoOutput> {
-    const todo = new TodoEntity(todoData).toJSON()
+  async save(todoData: TodoInput, id?: string): Promise<TodoOutput> {
+    const todo = new TodoEntity(todoData, id).toJSON()
     this.todos.push(todo)
     return todo
   }
@@ -19,16 +19,16 @@ export class TodoRepoInMemory implements ITodoRepository {
     return todos
   }
 
-  async findOne(idUser: string, id: string): Promise<TodoOutput> {
-    const todo = this.todos.find(t => t.id === id && t.idUser === idUser)
+  async findOne( id: string): Promise<TodoOutput> {
+    const todo = this.todos.find(t => t.id === id)
     if (!todo) {
       throw new Error('Todo not found.')
     }
     return todo
   }
 
-  async update(idUser: string, id: string, status: boolean): Promise<TodoOutput> {
-    const find = this.todos.find(t => t.id === id && t.idUser === idUser)
+  async update(id: string, status: boolean): Promise<TodoOutput> {
+    const find = this.todos.find(t => t.id === id)
 
     if (!find) {
       throw new Error('Todo not found.')
@@ -44,8 +44,9 @@ export class TodoRepoInMemory implements ITodoRepository {
     return todoEntity
   }
 
-  async delete(idUser: string, id: string): Promise<void> {
-    this.todos = this.todos.filter(t => t.id !== id && t.idUser === idUser)
+  async delete(id: string): Promise<void> {
+    this.todos = this.todos.filter(t => t.id !== id)    
+    return 
   }
 
 }
