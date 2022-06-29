@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --watch \"./*\" --ext \"ts, json\" --exec \"ts-node src/infra/express/index.ts\"",
-    "test": "jest --watch src/*",
+    "test": "jest",
     "test:integration": "nodemon --watch \"./*\" --ext \"ts, json\" --exec jest test/*"
   },
   "keywords": [],
