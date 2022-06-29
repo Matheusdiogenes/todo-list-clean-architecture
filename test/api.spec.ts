@@ -70,9 +70,7 @@ describe('API Test', () => {
     })
 
     it('should delete a todo (user #1)', async () => {      
-      const request = await axios.delete(`http://localhost:3333/todo/${userOneTest.idTodos[0]}`)      
-      console.log('id', userOneTest);
-      
+      const request = await axios.delete(`http://localhost:3333/todo/${userOneTest.idTodos[0]}`)
       expect(request.status).toEqual(200)
     })
 
