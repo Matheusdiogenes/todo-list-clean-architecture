@@ -7,7 +7,7 @@ git clone https://github.com/Matheusdiogenes/todo-list-clean-architecture
 cd todo-list-clean-architecture
 npm install
 npm test
-npm start (building...)
+npm run start 
 ```
 
 ### Project Structure
@@ -21,6 +21,8 @@ src
     └ domain                        → Entities, Payloads, repository interfaces and Unitary Tests
     └ infra                         → Frameworks, tools and Unitary Tests
        └ db                         → Database Storage (In Memory)
+test
+  └ api.spec.ts                     → Integration Test
 jest.config.ts                      → Jest Config
 tsconfig.ts                         → Typescript Config
 ```
